@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Модератор — бренды — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="moderator-brands.html">
+  <div id="shell-header"></div>
+
+  <main id="main" class="admin-page">
+    <section class="admin-hero">
+      <div class="admin-hero__content">
+        <p class="admin-hero__eyebrow">Beltelecom Shop</p>
+        <h1 class="admin-page__title">Бренды каталога</h1>
+        <p class="admin-hero__lead">Панель модератора для добавления и поддержки брендов, которые используются в фильтрах разделов и при создании карточек товаров.</p>
+      </div>
+      <div class="admin-stats" aria-label="Сводка по брендам">
+        <article class="admin-stat">
+          <span class="admin-stat__label">Всего брендов</span>
+          <strong class="admin-stat__value" id="admin-brands-stat-total">0</strong>
+        </article>
+        <article class="admin-stat">
+          <span class="admin-stat__label">Активные</span>
+          <strong class="admin-stat__value" id="admin-brands-stat-active">0</strong>
+        </article>
+        <article class="admin-stat">
+          <span class="admin-stat__label">Категорий с брендами</span>
+          <strong class="admin-stat__value" id="admin-brands-stat-categories">0</strong>
+        </article>
+        <article class="admin-stat">
+          <span class="admin-stat__label">Используются в товарах</span>
+          <strong class="admin-stat__value" id="admin-brands-stat-used">0</strong>
+        </article>
+      </div>
+    </section>
+
+    <nav class="admin-tabs" aria-label="Разделы панели модератора">
+      <a class="admin-tabs__link" href="moderator-products.html">Товары</a>
+      <a class="admin-tabs__link is-active" href="moderator-brands.html">Бренды</a>
+      <a class="admin-tabs__link" href="moderator-requests.html">Заявки</a>
+      <a class="admin-tabs__link" href="moderator-orders.html">Заказы</a>
+    </nav>
+
+    <noscript>
+      <div class="admin-gate">
+        Для работы панели нужен JavaScript. Включите его в браузере и обновите страницу.
+      </div>
+    </noscript>
+
+    <div id="admin-gate" class="admin-gate" hidden>
+      <p>Нужны права администратора или модератора. Войдите под подходящей учётной записью и обновите страницу.</p>
+      <p><a href="login.html">Вход</a> · <a href="index.html">На главную</a></p>
+    </div>
+
+    <div id="admin-panel" class="admin-panel" hidden>
+      <div class="admin-toolbar">
+        <div class="admin-toolbar__filters">
+          <label>
+            Поиск бренда
+            <input type="search" id="admin-brand-search" placeholder="Название или slug" />
+          </label>
+          <label>
+            Категория
+            <select id="admin-brand-category-filter"></select>
+          </label>
+          <label>
+            Статус
+            <select id="admin-brand-status-filter">
+              <option value="">Все</option>
+              <option value="active">Только активные</option>
+              <option value="inactive">Только скрытые</option>
+            </select>
+          </label>
+        </div>
+        <div class="admin-toolbar__actions">
+          <button type="button" class="btn btn--accent btn--sm" id="admin-brands-refresh">Обновить бренды</button>
+          <button type="button" class="btn btn--sm" id="admin-brand-new">Новый бренд</button>
+        </div>
+      </div>
+
+      <div class="admin-layout">
+        <div class="admin-list-wrap">
+          <div class="admin-list-wrap__head">
+            <div>
+              <h2 class="admin-card__title">Список брендов</h2>
+              <p class="admin-card__lead">Модератор может добавлять бренды для нужных категорий и поддерживать список в актуальном состоянии.</p>
+            </div>
+            <span class="admin-chip" id="admin-brands-count">0 брендов</span>
+          </div>
+          <table class="admin-table" id="admin-brands-list">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Бренд</th>
+                <th>Категории</th>
+                <th>Статус</th>
+                <th>Товары</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="admin-form-wrap">
+          <div class="admin-form__head">
+            <div>
+              <h2 class="admin-form__heading" id="admin-brand-form-title">Новый бренд</h2>
+              <p class="admin-card__lead" id="admin-brand-form-lead">Заполните название бренда и отметьте категории, где он должен быть доступен.</p>
+            </div>
+            <div class="admin-form__badges">
+              <span class="admin-chip admin-chip--accent" id="admin-brand-current-state">Новый бренд</span>
+              <span class="admin-chip" id="admin-brand-current-meta">ID появится после сохранения</span>
+            </div>
+          </div>
+
+          <form id="admin-brand-form" class="admin-form">
+            <input type="hidden" id="brand-id" value="" />
+            <section class="admin-form-section">
+              <div class="admin-form-section__head">
+                <h3>Основные данные</h3>
+                <p>Созданный бренд сразу сможет использоваться в карточках товаров нужных категорий.</p>
+              </div>
+              <label>Название бренда <input type="text" id="brand-title" required placeholder="Например, ASUS" /></label>
+              <label class="admin-check">
+                <input type="checkbox" id="brand-is-active" checked />
+                Активен в фильтрах и товарах
+              </label>
+            </section>
+
+            <section class="admin-form-section">
+              <div class="admin-form-section__head">
+                <h3>Категории товаров</h3>
+                <p>Бренд будет отображаться только в выбранных разделах каталога.</p>
+              </div>
+              <div id="brand-categories" class="admin-check-grid"></div>
+            </section>
+
+            <div class="admin-form-actions">
+              <button type="submit" class="btn btn--accent">Сохранить бренд</button>
+              <button type="button" class="btn btn--sm" id="admin-brand-reset">Сбросить форму</button>
+              <button type="button" class="btn btn--ghost" id="admin-brand-delete" disabled>Удалить бренд</button>
+            </div>
+            <p id="admin-brand-status" class="admin-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/pages/admin-brands.js"></script>
+</body>
+</html>

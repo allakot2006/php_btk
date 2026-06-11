@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Корзина — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="cart.html">
+  <div id="shell-header"></div>
+
+  <main id="main">
+    <section class="cart-container">
+      <h1>Корзина</h1>
+      <p data-auth-user class="muted">Проверка авторизации…</p>
+      <p data-guest-only>Для оформления заказа войдите в аккаунт: <a href="login.html">Вход</a> или <a href="account.html">кабинет</a>.</p>
+      <div id="cart-empty" style="display:none;">
+        <p>Корзина пуста.</p>
+        <p class="cart-empty-actions"><a class="btn btn--primary" href="promo.html">В каталог</a></p>
+      </div>
+      <div id="cart-content" style="display:none;">
+        <div id="cart-items"></div>
+        <p class="cart-total-line"><strong>Итого:</strong> <span id="cart-total">0</span> BYN</p>
+        <div class="cart-toolbar">
+          <button type="button" id="cart-clear" class="btn btn--ghost btn--sm">Очистить корзину</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="checkout-container">
+      <h2>Оформление заказа</h2>
+      <form id="checkout-form">
+        <label for="customer-name">Имя</label>
+        <input id="customer-name" name="name" required minlength="2" maxlength="128" />
+
+        <label for="customer-phone">Телефон</label>
+        <input id="customer-phone" name="phone" type="tel" required maxlength="32" placeholder="+375 29 123-45-67" inputmode="tel" />
+
+        <label for="customer-email">Email (необязательно)</label>
+        <input id="customer-email" name="email" type="email" placeholder="example@mail.com" />
+
+        <label for="customer-address">Адрес доставки</label>
+        <input id="customer-address" name="address" required maxlength="512" placeholder="Город, улица, дом" autocomplete="street-address" />
+
+        <label for="customer-comment">Комментарий (необязательно)</label>
+        <textarea id="customer-comment" name="comment" rows="3"></textarea>
+
+        <div class="checkout-actions">
+          <button type="submit" id="checkout-submit" class="btn btn--primary btn--lg btn--block">Отправить заказ</button>
+        </div>
+        <p id="checkout-status"></p>
+      </form>
+    </section>
+  </main>
+
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/validation.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/pages/pages-cart.js"></script>
+</body>
+</html>
+
+
+

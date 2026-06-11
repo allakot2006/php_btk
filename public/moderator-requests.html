@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Модератор — заявки — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="moderator-requests.html">
+  <div id="shell-header"></div>
+
+  <main id="main" class="admin-page">
+    <section class="admin-hero">
+      <div class="admin-hero__content">
+        <p class="admin-hero__eyebrow">Beltelecom Shop</p>
+        <h1 class="admin-page__title">Заявки из контактов</h1>
+        <p class="admin-hero__lead">Список обращений пользователей по звонкам и наличию товара.</p>
+      </div>
+      <div class="admin-stats" aria-label="Сводка по заявкам">
+        <article class="admin-stat"><span class="admin-stat__label">Всего</span><strong class="admin-stat__value" id="requests-stat-total">0</strong></article>
+        <article class="admin-stat"><span class="admin-stat__label">Новые</span><strong class="admin-stat__value" id="requests-stat-new">0</strong></article>
+        <article class="admin-stat"><span class="admin-stat__label">Звонок</span><strong class="admin-stat__value" id="requests-stat-callback">0</strong></article>
+        <article class="admin-stat"><span class="admin-stat__label">Наличие</span><strong class="admin-stat__value" id="requests-stat-stock">0</strong></article>
+      </div>
+    </section>
+
+    <nav class="admin-tabs" aria-label="Разделы панели модератора">
+      <a class="admin-tabs__link" href="moderator-products.html">Товары</a>
+      <a class="admin-tabs__link" href="moderator-brands.html">Бренды</a>
+      <a class="admin-tabs__link is-active" href="moderator-requests.html">Заявки</a>
+      <a class="admin-tabs__link" href="moderator-orders.html">Заказы</a>
+    </nav>
+
+    <div id="admin-gate" class="admin-gate" hidden>
+      <p>Нужны права администратора или модератора. Войдите под подходящей учётной записью и обновите страницу.</p>
+      <p><a href="login.html">Вход</a> · <a href="index.html">На главную</a></p>
+    </div>
+
+    <div id="admin-panel" class="admin-panel" hidden>
+      <div class="admin-toolbar">
+        <div class="admin-toolbar__filters">
+          <label>Поиск <input type="search" id="requests-search" placeholder="Имя, телефон, email, текст" /></label>
+          <label>Тип <select id="requests-type"><option value="">Все</option><option value="callback">Заказать звонок</option><option value="stock">Наличие товара</option></select></label>
+          <label>Статус <select id="requests-status"><option value="">Все</option><option value="new">Новые</option><option value="in_progress">В работе</option><option value="done">Закрытые</option></select></label>
+        </div>
+        <div class="admin-toolbar__actions">
+          <button type="button" class="btn btn--accent btn--sm" id="requests-refresh">Обновить</button>
+        </div>
+      </div>
+      <div class="admin-list-wrap">
+        <table class="admin-table" id="requests-list">
+          <thead>
+            <tr><th>ID</th><th>Тип</th><th>Аккаунт</th><th>Контакты</th><th>Запрос</th><th>Статус</th><th>Создано</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p id="requests-status-line" class="admin-status" aria-live="polite"></p>
+    </div>
+  </main>
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/pages/admin-requests.js"></script>
+</body>
+</html>

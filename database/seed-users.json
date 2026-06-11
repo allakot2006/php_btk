@@ -1,0 +1,31 @@
+{
+  "_comment": "Только для локальной разработки. Подхватывается при SEED_TEST_DATA=1 (см. TestUsersJsonSeeder). Пароли в открытом виде — не для продакшена.",
+  "users": [
+    {
+      "name": "Администратор магазина",
+      "email": "admin@beltelecom.by",
+      "password": "admin123",
+      "phone": "+375291110001",
+      "address": "Гродно, ул. Советская, 18",
+      "isAdmin": true,
+      "isActive": true
+    },
+    {
+      "name": "Модератор каталога",
+      "email": "moderator@beltelecom.by",
+      "password": "moderator123",
+      "phone": "+375291110002",
+      "address": "Гродно, пр. Янки Купалы, 25",
+      "isModerator": true,
+      "isActive": true
+    },
+    {
+      "name": "Покупатель тестовый",
+      "email": "buyer@beltelecom.by",
+      "password": "user123",
+      "phone": "+375291234567",
+      "address": "Гродно, ул. Ожешко, 22",
+      "isActive": true
+    }
+  ]
+}

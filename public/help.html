@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Справка — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="help.html">
+  <div id="shell-header"></div>
+
+  <main id="main" class="page-help">
+    <section class="page-hero page-hero--compact">
+      <h1>Справка</h1>
+      <p class="page-hero__lead">Подробная инструкция по работе с каталогом, корзиной, заказами и личным кабинетом Beltelecom Shop.</p>
+    </section>
+
+    <nav class="help-toc about-panel" aria-label="Содержание справки">
+      <h2 class="help-toc__title">Содержание</h2>
+      <ol class="help-toc__list">
+        <li><a href="#start">С чего начать</a></li>
+        <li><a href="#catalog">Каталог и категории</a></li>
+        <li><a href="#search">Поиск товаров</a></li>
+        <li><a href="#product">Карточка товара</a></li>
+        <li><a href="#cart">Корзина</a></li>
+        <li><a href="#order">Оформление заказа</a></li>
+        <li><a href="#account">Личный кабинет</a></li>
+        <li><a href="#contacts">Обратная связь</a></li>
+        <li><a href="#faq">Частые вопросы</a></li>
+      </ol>
+    </nav>
+
+    <section id="start" class="help-section about-panel">
+      <h2>С чего начать</h2>
+      <p>Beltelecom Shop — интернет-магазин электроники. Откройте главную страницу, выберите категорию в меню «Каталог» или воспользуйтесь поиском в шапке.</p>
+      <p>Для оформления заказа и просмотра истории покупок понадобится регистрация или вход в личный кабинет. Корзина доступна без авторизации — товары сохраняются в браузере до оформления.</p>
+      <ul class="help-links">
+        <li><a href="index.html">Главная страница</a></li>
+        <li><a href="promo.html">Акции и скидки</a></li>
+        <li><a href="login.html">Вход и регистрация</a></li>
+      </ul>
+    </section>
+
+    <section id="catalog" class="help-section about-panel">
+      <h2>Каталог и категории</h2>
+      <p>Товары разбиты по разделам: смартфоны, ноутбуки, телевизоры, аудио, игры, техника для дома и другие. Перейти в нужный раздел можно несколькими способами:</p>
+      <ol class="help-steps">
+        <li>Кнопка <strong>«Каталог»</strong> в верхнем меню — откроется панель со всеми категориями.</li>
+        <li>Горизонтальная полоса категорий под шапкой на главной и витринных страницах.</li>
+        <li>Блок <strong>«Категории»</strong> на главной странице — плитки с быстрым переходом.</li>
+        <li>Раздел <strong>«Акции»</strong> (<a href="promo.html">promo.html</a>) — товары со скидкой.</li>
+      </ol>
+      <p>На странице категории отображается сетка карточек: фото, название, краткое описание, цена. Нажмите «Подробнее» или на название, чтобы открыть полную карточку товара.</p>
+    </section>
+
+    <section id="search" class="help-section about-panel">
+      <h2>Поиск товаров</h2>
+      <p>Поле <strong>«Найти товар…»</strong> в шапке сайта доступно на всех страницах. При вводе букв под полем появляются подсказки — товары, название которых <em>начинается</em> с введённого текста. Выберите пункт мышью или клавишами ↑/↓ и Enter.</p>
+      <p>Отдельная страница поиска: <a href="search.html">search.html</a>. Введите запрос и нажмите «Искать» — отобразятся все подходящие товары (по названию, описанию, бренду, артикулу и категории). Пустой запрос ничего не найдёт — введите хотя бы один символ.</p>
+    </section>
+
+    <section id="product" class="help-section about-panel">
+      <h2>Карточка товара</h2>
+      <p>На странице товара указаны характеристики, описание, цена и наличие. Кнопка <strong>«В корзину»</strong> добавляет позицию с выбранным количеством. Если товар закончился, кнопка будет неактивна (надпись «Нет в наличии»).</p>
+      <p>Открыть карточку можно:</p>
+      <ul>
+        <li>из каталога или результатов поиска;</li>
+        <li>по прямой ссылке вида <code>product.html?id=…</code> (номер товара в базе).</li>
+      </ul>
+    </section>
+
+    <section id="cart" class="help-section about-panel">
+      <h2>Корзина</h2>
+      <p>Иконка <strong>«Корзина»</strong> в шапке показывает число добавленных единиц товара. На странице <a href="cart.html">корзины</a> можно:</p>
+      <ul>
+        <li>изменить количество каждой позиции;</li>
+        <li>удалить товар из заказа;</li>
+        <li>увидеть итоговую сумму в BYN.</li>
+      </ul>
+      <p>Корзина хранится локально в браузере. При смене устройства или очистке данных сайта содержимое может сброситься — перед оформлением проверьте список позиций.</p>
+    </section>
+
+    <section id="order" class="help-section about-panel">
+      <h2>Оформление заказа</h2>
+      <ol class="help-steps">
+        <li>Добавьте нужные товары в корзину.</li>
+        <li>Откройте корзину и нажмите кнопку оформления заказа.</li>
+        <li>Войдите в аккаунт, если ещё не авторизованы — заказ привязывается к пользователю.</li>
+        <li>Подтвердите оформление. Заказ появится в личном кабинете со статусом (например, «новый», «в обработке»).</li>
+      </ol>
+      <p class="muted">После оформления статус заказа можно отслеживать в личном кабинете. Менеджер свяжется с вами для уточнения доставки и оплаты.</p>
+    </section>
+
+    <section id="account" class="help-section about-panel">
+      <h2>Личный кабинет</h2>
+      <p>Раздел <a href="account.html">«Кабинет»</a> доступен после <a href="login.html">входа</a> или регистрации по email и паролю. В кабинете:</p>
+      <ul>
+        <li>история ваших заказов и их статусы;</li>
+        <li>данные профиля (имя, email);</li>
+        <li>выход из аккаунта.</li>
+      </ul>
+      <p>Администраторы и модераторы после входа видят дополнительную ссылку <strong>«Панель»</strong> в шапке — управление товарами, брендами, заказами и обращениями клиентов.</p>
+    </section>
+
+    <section id="contacts" class="help-section about-panel">
+      <h2>Обратная связь</h2>
+      <p>На странице <a href="contacts.html">«Контакты»</a> указаны телефон, email и адрес. Можно отправить форму:</p>
+      <ul>
+        <li><strong>Заказать звонок</strong> — менеджер свяжется по выбранной теме (консультация, заказ, наличие);</li>
+        <li><strong>Узнать о наличии</strong> — укажите категорию и модель интересующего товара.</li>
+      </ul>
+      <p>Обращения сохраняются в системе и обрабатываются сотрудниками магазина в рабочее время.</p>
+    </section>
+
+    <section id="faq" class="help-section about-panel">
+      <h2>Частые вопросы</h2>
+      <div class="help-faq">
+        <details class="help-faq__item">
+          <summary>Сайт не открывается или поиск не работает</summary>
+          <p>Запустите проект через PHP: <code>php -S localhost:8000 router.php</code> из корня репозитория и откройте <code>http://localhost:8000/</code>. Без сервера API и поиск к базе данных недоступны.</p>
+        </details>
+        <details class="help-faq__item">
+          <summary>Не вижу товары после установки на новом компьютере</summary>
+          <p>Убедитесь, что MySQL запущен, в <code>config/.env</code> верные параметры подключения, база создана. При первом обращении к API таблицы создаются автоматически. Для проверки выполните <code>php tools/debug-bootstrap.php</code>.</p>
+        </details>
+        <details class="help-faq__item">
+          <summary>Забыл пароль</summary>
+          <p>Напишите на <a href="mailto:support@beltelecom-shop.by">support@beltelecom-shop.by</a> с адреса, указанного при регистрации — мы поможем восстановить доступ. Либо оформите новую регистрацию с другим email.</p>
+        </details>
+        <details class="help-faq__item">
+          <summary>Валюта и цены</summary>
+          <p>Все цены на сайте указаны в белорусских рублях (BYN), если не указано иное в карточке товара.</p>
+        </details>
+        <details class="help-faq__item">
+          <summary>Куда обратиться за помощью по сайту</summary>
+          <p>Используйте <a href="contacts.html">форму на странице контактов</a> или напишите на <a href="mailto:support@beltelecom-shop.by">support@beltelecom-shop.by</a>.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/site-shell.js"></script>
+</body>
+</html>

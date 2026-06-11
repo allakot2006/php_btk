@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Админ — пользователи — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="admin-users.html">
+  <div id="shell-header"></div>
+
+  <main id="main" class="admin-page">
+    <section class="admin-hero">
+      <div class="admin-hero__content">
+        <p class="admin-hero__eyebrow">Beltelecom Shop</p>
+        <h1 class="admin-page__title">Управление пользователями</h1>
+        <p class="admin-hero__lead">Отдельный раздел для аккаунтов, ролей пользователя, модератора и администратора, а также управления доступом к магазину.</p>
+      </div>
+      <div class="admin-stats" aria-label="Сводка по пользователям">
+        <article class="admin-stat">
+          <span class="admin-stat__label">Всего пользователей</span>
+          <strong class="admin-stat__value" id="admin-users-stat-total">0</strong>
+        </article>
+        <article class="admin-stat">
+          <span class="admin-stat__label">Администраторы</span>
+          <strong class="admin-stat__value" id="admin-users-stat-admins">0</strong>
+        </article>
+        <article class="admin-stat">
+          <span class="admin-stat__label">Модераторы</span>
+          <strong class="admin-stat__value" id="admin-users-stat-moderators">0</strong>
+        </article>
+        <article class="admin-stat">
+          <span class="admin-stat__label">Активные</span>
+          <strong class="admin-stat__value" id="admin-users-stat-active">0</strong>
+        </article>
+        <article class="admin-stat">
+          <span class="admin-stat__label">Отключённые</span>
+          <strong class="admin-stat__value" id="admin-users-stat-inactive">0</strong>
+        </article>
+      </div>
+    </section>
+
+    <nav class="admin-tabs" aria-label="Разделы админки">
+      <a class="admin-tabs__link" href="admin-products.html">Товары</a>
+      <a class="admin-tabs__link" href="admin-brands.html">Бренды</a>
+      <a class="admin-tabs__link" href="admin-requests.html">Заявки</a>
+      <a class="admin-tabs__link" href="admin-orders.html">Заказы</a>
+      <a class="admin-tabs__link is-active" href="admin-users.html">Пользователи</a>
+    </nav>
+
+    <noscript>
+      <div class="admin-gate">
+        Для работы админки нужен JavaScript. Включите его в браузере и обновите страницу.
+      </div>
+    </noscript>
+
+    <div id="admin-gate" class="admin-gate" hidden>
+      <p>Нужны права администратора. Войдите под учётной записью, для которой в <code>config/.env</code> указан <code>ADMIN_EMAIL</code>, затем перезапустите API.</p>
+      <p><a href="login.html">Вход</a> · <a href="index.html">На главную</a></p>
+    </div>
+
+    <div id="admin-panel" class="admin-panel" hidden>
+      <div class="admin-toolbar">
+        <div class="admin-toolbar__filters">
+          <label>
+            Поиск пользователя
+            <input type="search" id="admin-user-search" placeholder="Имя, email или телефон" />
+          </label>
+          <label>
+            Статус
+            <select id="admin-user-status-filter">
+              <option value="">Все</option>
+              <option value="active">Только активные</option>
+              <option value="inactive">Только отключённые</option>
+            </select>
+          </label>
+          <label>
+            Роль
+            <select id="admin-user-role-filter">
+              <option value="">Все</option>
+              <option value="admin">Администраторы</option>
+              <option value="moderator">Модераторы</option>
+              <option value="user">Пользователи</option>
+            </select>
+          </label>
+        </div>
+        <div class="admin-toolbar__actions">
+          <button type="button" class="btn btn--accent btn--sm" id="admin-users-refresh">Обновить пользователей</button>
+          <button type="button" class="btn btn--sm" id="admin-user-new">Новый пользователь</button>
+        </div>
+      </div>
+
+      <div class="admin-layout admin-layout--users">
+        <div class="admin-list-wrap">
+          <div class="admin-list-wrap__head">
+            <div>
+              <h2 class="admin-card__title">Список пользователей</h2>
+              <p class="admin-card__lead">Управляйте аккаунтами, ролями пользователя, модератора и администратора, а также доступом к магазину.</p>
+            </div>
+            <div class="admin-form__badges">
+              <span class="admin-chip" id="admin-users-count">0 пользователей</span>
+              <span class="admin-chip admin-chip--accent" id="admin-users-admins">0 админов</span>
+              <span class="admin-chip" id="admin-users-moderators">0 модераторов</span>
+            </div>
+          </div>
+          <table class="admin-table" id="admin-users-list">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Пользователь</th>
+                <th>Роль</th>
+                <th>Статус</th>
+                <th>Заказы</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="admin-form-wrap">
+          <div class="admin-form__head">
+            <div>
+              <h2 class="admin-form__heading" id="admin-user-form-title">Новый пользователь</h2>
+              <p class="admin-card__lead" id="admin-user-form-lead">Создайте аккаунт или отредактируйте данные существующего пользователя.</p>
+            </div>
+            <div class="admin-form__badges">
+              <span class="admin-chip admin-chip--accent" id="admin-user-current-state">Новый</span>
+              <span class="admin-chip" id="admin-user-current-meta">ID появится после сохранения</span>
+            </div>
+          </div>
+
+          <form id="admin-user-form" class="admin-form">
+            <input type="hidden" id="u-id" name="id" value="" />
+            <div class="admin-form-section">
+              <div class="admin-form-section__head">
+                <h3>Профиль</h3>
+                <p>Основные данные учётной записи и контактная информация.</p>
+              </div>
+              <div class="admin-field-grid admin-field-grid--two">
+                <label>Имя <input type="text" id="u-name" required /></label>
+                <label>Email <input type="email" id="u-email" required /></label>
+              </div>
+              <div class="admin-field-grid admin-field-grid--two">
+                <label>Телефон <input type="text" id="u-phone" /></label>
+                <label>Пароль <input type="password" id="u-password" placeholder="Минимум 6 символов" /></label>
+              </div>
+              <label>Адрес <textarea id="u-address" rows="3"></textarea></label>
+              <div class="admin-field-grid admin-field-grid--two">
+                <label>Роль
+                  <select id="u-role">
+                    <option value="user">Пользователь</option>
+                    <option value="moderator">Модератор</option>
+                    <option value="admin">Администратор</option>
+                  </select>
+                </label>
+                <label class="admin-check">
+                  <input type="checkbox" id="u-isActive" checked />
+                  Аккаунт активен
+                </label>
+              </div>
+            </div>
+
+            <div class="admin-form-actions">
+              <button type="submit" class="btn btn--accent">Сохранить пользователя</button>
+              <button type="button" class="btn btn--ghost" id="admin-user-delete" disabled>Удалить пользователя</button>
+            </div>
+            <p id="admin-user-status" class="admin-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/validation.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/pages/admin-users.js"></script>
+</body>
+</html>

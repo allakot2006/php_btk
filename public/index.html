@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beltelecom Shop — интернет-магазин электроники</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="index.html">
+  <div id="shell-header"></div>
+
+  <main id="main">
+    <section class="hero hero--home">
+      <div class="hero__grid">
+        <div class="hero__text">
+          <p class="hero__eyebrow">Интернет-витрина</p>
+          <h1>Техника для дома и работы</h1>
+          <p class="hero__sub">
+            Смартфоны, ТВ, ноутбуки и аксессуары — выберите товар и оформите заказ в корзине.
+          </p>
+          <div class="hero__actions">
+            <a href="promo.html" class="btn btn--primary btn--lg">Каталог</a>
+            <a href="search.html" class="btn btn--ghost btn--lg">Поиск</a>
+          </div>
+          <div class="hero-trust" aria-label="Кратко">
+            <span class="hero-trust__item">Фильтры по цене</span>
+            <span class="hero-trust__item">Корзина</span>
+            <span class="hero-trust__item">Личный кабинет</span>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <figure class="site-photo-slot site-photo-slot--hero site-photo-slot--filled" data-photo-place="hero-main">
+            <img src="/assets/system/главный баннер.jpg" alt="Beltelecom Shop" width="800" height="600" loading="eager" decoding="async" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-benefits">
+      <div class="benefits-grid">
+        <article class="benefit-card">
+          <figure class="site-photo-slot site-photo-slot--sm benefit-card__visual site-photo-slot--filled" data-photo-place="benefit-1">
+            <img src="/assets/system/%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3.jpg" alt="Каталог" width="400" height="300" loading="lazy" decoding="async" />
+          </figure>
+          <h3>Каталог</h3>
+          <p>Категории и карточки без лишнего шума.</p>
+        </article>
+        <article class="benefit-card">
+          <figure class="site-photo-slot site-photo-slot--sm benefit-card__visual site-photo-slot--filled" data-photo-place="benefit-2">
+            <img src="/assets/system/Заказ.jpg" alt="Заказ" width="400" height="300" loading="lazy" decoding="async" />
+          </figure>
+          <h3>Заказ</h3>
+          <p>Корзина и оформление за пару шагов.</p>
+        </article>
+        <article class="benefit-card">
+          <figure class="site-photo-slot site-photo-slot--sm benefit-card__visual site-photo-slot--filled" data-photo-place="benefit-3">
+            <img src="/assets/system/Кабинет.jpg" alt="Личный кабинет" width="400" height="300" loading="lazy" decoding="async" />
+          </figure>
+          <h3>Кабинет</h3>
+          <p>История заказов в одном месте.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-showcase" aria-labelledby="home-showcase-title">
+      <h2 id="home-showcase-title">Витрина</h2>
+      <p class="section-lead home-showcase__lead">Как выглядит наш магазин вживую.</p>
+      <figure class="home-showcase__figure site-photo-slot site-photo-slot--filled">
+        <img src="/assets/system/Витрина.jpg" alt="Витрина Beltelecom Shop" width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </section>
+
+    <section class="hot-offers">
+      <h2>Акции и скидки</h2>
+      <p class="section-lead">Подборка из каталога.</p>
+      <div id="hot-offers" class="product-grid"></div>
+    </section>
+
+    <section class="home-categories">
+      <h2>Категории</h2>
+      <div class="category-tiles" id="category-tiles"></div>
+    </section>
+
+    <div id="products" class="home-db-products" aria-live="polite"></div>
+  </main>
+
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/pages/index-app.js"></script>
+</body>
+</html>
+
+
+

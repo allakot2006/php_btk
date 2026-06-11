@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Личный кабинет — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="account.html">
+  <div id="shell-header"></div>
+
+  <main id="main" class="page-account">
+    <section class="account-hero">
+      <h1>Личный кабинет</h1>
+      <p class="page-hero__lead" data-auth-user>Проверка…</p>
+      <p class="account-guest-msg" data-guest-only style="display:none;">
+        Войдите, чтобы видеть историю заказов: <a href="login.html">Вход</a>
+      </p>
+      <button type="button" class="ghost-button" data-auth-only style="display:none;" id="acc-logout">Выйти</button>
+    </section>
+
+    <section class="account-orders" data-auth-only style="display:none;">
+      <h2>Профиль</h2>
+      <form id="profile-form" class="contacts-form">
+        <label for="profile-name">Имя</label>
+        <input class="input" type="text" id="profile-name" required minlength="2" maxlength="128" />
+        <label for="profile-email">Email</label>
+        <input class="input" type="email" id="profile-email" readonly />
+        <label for="profile-phone">Телефон</label>
+        <input class="input" type="tel" id="profile-phone" maxlength="32" placeholder="+375 29 123-45-67" inputmode="tel" />
+        <label for="profile-address">Адрес</label>
+        <input class="input" type="text" id="profile-address" maxlength="512" placeholder="Город, улица, дом" />
+        <button type="submit" class="cta-button cta-button--solid">Сохранить профиль</button>
+      </form>
+      <p id="profile-status" class="search-status"></p>
+    </section>
+
+    <section class="account-orders" data-auth-only style="display:none;">
+      <h2>Мои заказы</h2>
+      <div id="orders-root"></div>
+      <p id="orders-status" class="search-status"></p>
+    </section>
+  </main>
+
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/validation.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/pages/pages-account.js"></script>
+</body>
+</html>
+
+
+

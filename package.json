@@ -1,0 +1,30 @@
+{
+  "name": "beltelecom-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nodejs/index.js",
+  "scripts": {
+    "test": "node --test tests/js/validation.test.mjs && php tests/php/UserValidationTest.php",
+    "test:js": "node --test tests/js/validation.test.mjs",
+    "test:php": "php tests/php/UserValidationTest.php",
+    "start": "node nodejs/index.js",
+    "sync:catalog": "node scripts/sync-catalog.js",
+    "sync:smartphones": "node scripts/sync-smartphones.js",
+    "seed:test": "php tools/seed-demo.php",
+    "sync:product-images": "node tools/sync-product-images-to-json.mjs",
+    "enrich:descriptions": "node tools/enrich-onliner-descriptions.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mssql": "^12.0.0",
+    "mysql2": "^3.15.2"
+  }
+}

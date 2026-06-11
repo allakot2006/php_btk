@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Контакты — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="contacts.html">
+  <div id="shell-header"></div>
+
+  <main id="main">
+    <figure class="contacts-banner">
+      <img src="/assets/system/Торговый зал.png" alt="Торговый зал" width="1200" height="480" loading="lazy" decoding="async" />
+    </figure>
+
+    <section class="contacts about-panel">
+      <h1>Свяжитесь с нами</h1>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-icon" aria-hidden="true">📞</span>
+          <div>
+            <strong>Телефон</strong>
+            <p>+375 (29) 123-45-67</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon" aria-hidden="true">📧</span>
+          <div>
+            <strong>Email</strong>
+            <p>support@beltelecom-shop.by</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon" aria-hidden="true">🏢</span>
+          <div>
+            <strong>Адрес</strong>
+            <p>г. Гродно, ул. Советская, 18</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="contacts-callback-row">
+      <section class="callback-form about-panel contacts-callback-row__form">
+        <h2>Заказать звонок</h2>
+        <p class="muted contacts-callback-row__hint">Оставьте контакты, и менеджер перезвонит, поможет с выбором товара, наличием и оформлением заказа.</p>
+        <form id="form-callback" class="contacts-form">
+          <label for="cb-name">Как к вам обращаться</label>
+          <input class="input" type="text" id="cb-name" name="name" required minlength="2" maxlength="128" placeholder="Например, Алексей" />
+          <label for="cb-phone">Телефон для связи</label>
+          <input class="input" type="tel" id="cb-phone" name="phone" required minlength="7" maxlength="32" placeholder="+375 29 123-45-67" />
+          <label for="cb-reason">Что вас интересует</label>
+          <select class="input" id="cb-reason" name="reason" required>
+            <option value="">Выберите тему звонка</option>
+            <option value="consultation">Помочь выбрать товар</option>
+            <option value="order">Оформить или уточнить заказ</option>
+            <option value="availability">Уточнить наличие товара</option>
+            <option value="other">Другой вопрос</option>
+          </select>
+          <p class="muted contacts-form__note">Обычно связываемся в ближайшее рабочее время.</p>
+          <button type="submit" class="cta-button cta-button--solid">Жду звонка</button>
+        </form>
+      </section>
+      <figure class="contacts-consult-photo site-photo-slot site-photo-slot--filled" aria-label="Консультация в магазине">
+        <img src="/assets/system/Консультация.png" alt="Консультация у эксперта" width="640" height="800" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+
+    <section class="availability-form about-panel">
+      <h2>Узнать о наличии товара</h2>
+      <p class="muted contacts-callback-row__hint">Выберите категорию техники, напишите нужную модель или пожелания, и мы подскажем наличие либо предложим подходящий вариант.</p>
+      <form id="form-stock" class="contacts-form">
+        <label for="st-category">Категория техники</label>
+        <select class="input" id="st-category" name="category" required>
+          <option value="">Выберите категорию</option>
+          <option value="smartphones">Смартфоны</option>
+          <option value="laptops">Ноутбуки</option>
+          <option value="tablets">Планшеты</option>
+          <option value="tvs">Телевизоры</option>
+          <option value="audio">Аудиотехника</option>
+          <option value="gadgets">Гаджеты</option>
+          <option value="home">Техника для дома</option>
+          <option value="vacuum">Пылесосы</option>
+        </select>
+        <label for="st-query">Какой товар нужен</label>
+        <input class="input" type="text" id="st-query" name="query" required minlength="3" maxlength="512" placeholder="Например, Xiaomi Robot Vacuum S20 или телевизор 55 дюймов" />
+        <label for="st-email">Куда отправить ответ</label>
+        <input class="input" type="email" id="st-email" name="email" required placeholder="example@mail.com" />
+        <p class="muted contacts-form__note">Если товара сейчас нет, подскажем похожую модель или сообщим о поступлении.</p>
+        <button type="submit" class="cta-button cta-button--solid">Сообщить о наличии</button>
+      </form>
+    </section>
+  </main>
+
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script>
+    async function sendContactRequest(path, body) {
+      const response = await fetch(path, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const payload = await response.json().catch(() => null);
+      if (!response.ok) {
+        throw new Error(payload && payload.error ? payload.error : 'Не удалось отправить заявку');
+      }
+      return payload;
+    }
+
+    document.getElementById('form-callback').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const body = {
+        name: document.getElementById('cb-name').value.trim(),
+        phone: document.getElementById('cb-phone').value.trim(),
+        reason: document.getElementById('cb-reason').value.trim(),
+      };
+      if (body.name.length < 2) {
+        alert('Укажите имя (минимум 2 символа).');
+        return;
+      }
+      if (body.phone.length < 7) {
+        alert('Укажите корректный телефон.');
+        return;
+      }
+      if (!body.reason) {
+        alert('Выберите тему звонка.');
+        return;
+      }
+      try {
+        await sendContactRequest('/api/contacts/callback', body);
+        form.reset();
+        alert('Спасибо! Заявка на звонок принята. Менеджер свяжется с вами в ближайшее рабочее время.');
+      } catch (error) {
+        alert(error.message || 'Ошибка отправки заявки.');
+      }
+    });
+
+    document.getElementById('form-stock').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const body = {
+        category: document.getElementById('st-category').value.trim(),
+        query: document.getElementById('st-query').value.trim(),
+        email: document.getElementById('st-email').value.trim(),
+      };
+      if (!body.category) {
+        alert('Выберите категорию.');
+        return;
+      }
+      if (body.query.length < 3) {
+        alert('Опишите товар минимум в 3 символа.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
+        alert('Укажите корректный email.');
+        return;
+      }
+      try {
+        await sendContactRequest('/api/contacts/stock', body);
+        form.reset();
+        alert('Запрос по наличию отправлен. Мы сообщим результат на указанный email.');
+      } catch (error) {
+        alert(error.message || 'Ошибка отправки запроса.');
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+

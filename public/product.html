@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Товар — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="product.html">
+  <div id="shell-header"></div>
+
+  <main id="main" class="product-page">
+    <p class="product-back"><a href="javascript:history.back()">← Назад</a> · <a href="promo.html">В каталог</a></p>
+    <article class="product-detail-card">
+      <div class="product-detail-card__media">
+        <img id="product-img" src="/assets/system/placeholder-product.svg" alt="" class="product-detail-card__img" />
+      </div>
+      <div class="product-detail-card__body">
+        <h1 id="product-name" class="product-detail-card__title"></h1>
+        <p class="product-detail-card__price" id="product-price"></p>
+        <p id="product-stock" class="product-detail-card__meta product-stock muted" hidden></p>
+        <p class="product-detail-card__meta product-color">Цвет: —</p>
+        <button type="button" class="buy-button" id="buy-btn">В корзину</button>
+        <p id="buy-status" class="buy-status"></p>
+        <div class="product-detail-card__desc">
+          <h3 class="product-desc-section">Описание</h3>
+          <p id="product-short-desc" class="product-short-desc"></p>
+          <div id="product-description-full" class="product-description-full"></div>
+        </div>
+      </div>
+    </article>
+
+    <section class="product-specs-block">
+      <h2 class="product-specs-block__title">Характеристики</h2>
+      <div id="product-specs" class="product-specs-wrap"></div>
+    </section>
+  </main>
+
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/catalog/specs-onliner.js"></script>
+  <script src="js/pages/product.js"></script>
+</body>
+</html>
+
+
+

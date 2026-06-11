@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Админ — заказы — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="admin-orders.html">
+  <div id="shell-header"></div>
+  <main id="main" class="admin-page">
+    <section class="admin-hero">
+      <div class="admin-hero__content">
+        <p class="admin-hero__eyebrow">Beltelecom Shop</p>
+        <h1 class="admin-page__title">Заказы покупателей</h1>
+        <p class="admin-hero__lead">Лента всех заказов из корзины: контакты, адрес, состав и сумма.</p>
+      </div>
+    </section>
+    <nav class="admin-tabs" aria-label="Разделы админки">
+      <a class="admin-tabs__link" href="admin-products.html">Товары</a>
+      <a class="admin-tabs__link" href="admin-brands.html">Бренды</a>
+      <a class="admin-tabs__link" href="admin-requests.html">Заявки</a>
+      <a class="admin-tabs__link is-active" href="admin-orders.html">Заказы</a>
+      <a class="admin-tabs__link" href="admin-users.html">Пользователи</a>
+    </nav>
+    <div id="admin-gate" class="admin-gate" hidden><p>Нужны права администратора или модератора.</p></div>
+    <div id="admin-panel" class="admin-panel" hidden>
+      <div class="admin-toolbar">
+        <div class="admin-toolbar__filters">
+          <label>Поиск <input type="search" id="orders-search" placeholder="Номер, имя, телефон, email" /></label>
+        </div>
+        <div class="admin-toolbar__actions">
+          <button type="button" class="btn btn--accent btn--sm" id="orders-refresh">Обновить</button>
+        </div>
+      </div>
+      <div class="admin-list-wrap">
+        <table class="admin-table" id="orders-list">
+          <thead><tr><th>Номер</th><th>Покупатель</th><th>Контакты</th><th>Адрес</th><th>Сумма</th><th>Состав</th><th>Статус</th><th>Дата</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p id="orders-status-line" class="admin-status" aria-live="polite"></p>
+    </div>
+  </main>
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/pages/admin-orders.js"></script>
+</body>
+</html>

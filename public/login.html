@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Вход — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="login.html">
+  <div id="shell-header"></div>
+
+  <main id="main" class="page-auth">
+    <section class="auth-container auth-panel">
+      <p data-auth-user class="muted">Проверка авторизации…</p>
+      <button type="button" id="logout-btn" data-auth-only style="display:none;" class="ghost-button">Выйти</button>
+
+      <div class="auth-tabs" role="tablist" aria-label="Вход или регистрация">
+        <button type="button" class="tab-btn active" role="tab" aria-selected="true" aria-controls="login-form" id="tab-login" data-tab="login" tabindex="0">Вход</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="register-form" id="tab-register" data-tab="register" tabindex="-1">Регистрация</button>
+      </div>
+
+      <form id="login-form" class="auth-form" role="tabpanel" aria-labelledby="tab-login">
+        <h2>Вход</h2>
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" name="email" required autocomplete="email" placeholder="ivan.petrov@mail.com" inputmode="email" />
+
+        <label for="login-password">Пароль</label>
+        <input type="password" id="login-password" name="password" required placeholder="Введите пароль" />
+
+        <button type="submit" class="cta-button cta-button--solid">Войти</button>
+      </form>
+
+      <form id="register-form" class="auth-form hidden" role="tabpanel" aria-labelledby="tab-register">
+        <h2>Регистрация</h2>
+        <label for="reg-name">Имя</label>
+        <input type="text" id="reg-name" name="name" required placeholder="Ваше имя" />
+
+        <label for="reg-email">Email</label>
+        <input type="email" id="reg-email" name="email" required autocomplete="email" placeholder="ivan.petrov@mail.com" inputmode="email" />
+
+        <label for="reg-password">Пароль</label>
+        <input type="password" id="reg-password" name="password" required placeholder="Не короче 6 символов" />
+
+        <label for="reg-confirm">Подтверждение пароля</label>
+        <input type="password" id="reg-confirm" name="confirm" required placeholder="Повторите пароль" />
+
+        <label for="reg-phone">Телефон (необязательно)</label>
+        <input type="tel" id="reg-phone" name="phone" autocomplete="tel" placeholder="+375 29 123-45-67" inputmode="tel" />
+
+        <label for="reg-address">Адрес (необязательно)</label>
+        <input type="text" id="reg-address" name="address" placeholder="Город, улица, дом" />
+
+        <button type="submit" class="cta-button cta-button--solid">Зарегистрироваться</button>
+      </form>
+
+      <p id="auth-status" class="auth-status-line"></p>
+
+      <div id="auth-success" class="auth-success hidden" aria-live="polite">
+        <div class="auth-success__icon" aria-hidden="true">✓</div>
+        <h2 id="auth-success-title" class="auth-success__title">Готово</h2>
+        <p id="auth-success-text" class="auth-success__text">Переходим в личный кабинет…</p>
+        <div class="auth-success__progress"><span></span></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/validation.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/pages/pages-login.js"></script>
+</body>
+</html>
+
+
+

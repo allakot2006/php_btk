@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Модератор — товары — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="moderator-products.html">
+  <div id="shell-header"></div>
+
+  <main id="main" class="admin-page">
+    <section class="admin-hero">
+      <div class="admin-hero__content">
+        <p class="admin-hero__eyebrow">Beltelecom Shop</p>
+        <h1 class="admin-page__title">Панель модератора</h1>
+        <p class="admin-hero__lead">Рабочее место модератора каталога: управление товарами, остатками, описаниями и карточками витрины без доступа к пользователям.</p>
+      </div>
+      <div class="admin-stats" aria-label="Сводка по каталогу">
+        <article class="admin-stat">
+          <span class="admin-stat__label">Всего товаров</span>
+          <strong class="admin-stat__value" id="admin-stat-total">0</strong>
+        </article>
+        <article class="admin-stat">
+          <span class="admin-stat__label">Активные</span>
+          <strong class="admin-stat__value" id="admin-stat-active">0</strong>
+        </article>
+        <article class="admin-stat">
+          <span class="admin-stat__label">Скрытые</span>
+          <strong class="admin-stat__value" id="admin-stat-hidden">0</strong>
+        </article>
+        <article class="admin-stat">
+          <span class="admin-stat__label">С остатком</span>
+          <strong class="admin-stat__value" id="admin-stat-stock">0</strong>
+        </article>
+      </div>
+    </section>
+
+    <nav class="admin-tabs" aria-label="Разделы панели модератора">
+      <a class="admin-tabs__link is-active" href="moderator-products.html">Товары</a>
+      <a class="admin-tabs__link" href="moderator-brands.html">Бренды</a>
+      <a class="admin-tabs__link" href="moderator-requests.html">Заявки</a>
+      <a class="admin-tabs__link" href="moderator-orders.html">Заказы</a>
+    </nav>
+
+    <noscript>
+      <div class="admin-gate">
+        Для работы панели нужен JavaScript. Включите его в браузере и обновите страницу.
+      </div>
+    </noscript>
+
+    <div id="admin-gate" class="admin-gate" hidden>
+      <p>Нужны права администратора или модератора. Войдите под подходящей учётной записью и обновите страницу.</p>
+      <p><a href="login.html">Вход</a> · <a href="index.html">На главную</a></p>
+    </div>
+
+    <div id="admin-panel" class="admin-panel" hidden>
+      <div class="admin-toolbar">
+        <div class="admin-toolbar__filters">
+          <label>
+            Поиск
+            <input type="search" id="admin-search" placeholder="Название, slug или SKU" />
+          </label>
+          <label>
+            Категория
+            <select id="admin-cat-filter"></select>
+          </label>
+        </div>
+        <div class="admin-toolbar__actions">
+          <button type="button" class="btn btn--accent btn--sm" id="admin-refresh">Обновить список</button>
+          <button type="button" class="btn btn--sm" id="admin-new">Новый товар</button>
+        </div>
+      </div>
+
+      <div class="admin-layout">
+        <div class="admin-list-wrap">
+          <div class="admin-list-wrap__head">
+            <div>
+              <h2 class="admin-card__title">Каталог товаров</h2>
+              <p class="admin-card__lead">Модератор может создавать и редактировать карточки товаров, описания, характеристики и остатки.</p>
+            </div>
+            <span class="admin-chip" id="admin-list-count">0 позиций</span>
+          </div>
+          <table class="admin-table" id="admin-list">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th class="admin-table__actions-col">Действие</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="admin-modal" id="admin-product-modal" hidden>
+        <div class="admin-modal__backdrop" data-admin-modal-close></div>
+        <div class="admin-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="admin-form-title">
+          <button type="button" class="admin-modal__close" id="admin-modal-close" aria-label="Закрыть окно">×</button>
+          <div class="admin-form-wrap admin-form-wrap--modal">
+            <div class="admin-form__head">
+              <div>
+                <h2 class="admin-form__heading" id="admin-form-title">Новая карточка товара</h2>
+                <p class="admin-card__lead" id="admin-form-lead">Заполните основные данные, описание и характеристики.</p>
+              </div>
+              <div class="admin-form__badges">
+                <span class="admin-chip admin-chip--accent" id="admin-current-state">Новый товар</span>
+                <span class="admin-chip" id="admin-current-meta">ID появится после сохранения</span>
+              </div>
+            </div>
+            <form id="admin-product-form" class="admin-form">
+              <input type="hidden" id="f-id" name="id" value="" />
+              <section class="admin-form-section">
+                <div class="admin-form-section__head">
+                  <h3>Основные данные</h3>
+                  <p>Базовая информация о товаре и его публикации на витрине.</p>
+                </div>
+                <div class="admin-form-grid">
+                  <div class="admin-form-fields">
+                    <div class="admin-field-grid admin-field-grid--two">
+                      <label>Категория <select id="f-categoryId" required></select></label>
+                      <label>Slug <input type="text" id="f-slug" required pattern="[a-z0-9_-]+" placeholder="my-product-slug" /></label>
+                    </div>
+                    <label>Название <input type="text" id="f-name" required /></label>
+                    <div class="admin-field-grid admin-field-grid--three">
+                      <label>Цена, BYN <input type="number" id="f-price" step="0.01" min="0" required /></label>
+                      <label>Старая цена <input type="number" id="f-originalPrice" step="0.01" min="0" /></label>
+                      <label>Скидка, % <input type="number" id="f-discount" min="0" max="100" /></label>
+                    </div>
+                    <div class="admin-field-grid admin-field-grid--three">
+                      <label>Бренд <select id="f-brand"></select></label>
+                      <label>Цвет <input type="text" id="f-color" /></label>
+                      <label>Артикул (SKU) <input type="text" id="f-sku" maxlength="64" placeholder="необязательно, уникально" /></label>
+                    </div>
+                    <div class="admin-field-grid admin-field-grid--two">
+                      <label>Остаток на складе <input type="number" id="f-stock" min="0" step="1" placeholder="пусто = не вести учёт" /></label>
+                      <label class="admin-check">
+                        <input type="checkbox" id="f-isActive" checked />
+                        Активен на витрине
+                      </label>
+                    </div>
+                  </div>
+                  <aside class="admin-preview">
+                    <div class="admin-preview__frame">
+                      <img id="admin-image-preview" src="/assets/system/placeholder-product.svg" alt="Предпросмотр товара" />
+                    </div>
+                    <p id="admin-image-caption" class="admin-preview__caption">Задайте URL картинки, чтобы увидеть предпросмотр.</p>
+                  </aside>
+                </div>
+                <label>Картинка (URL) <input type="text" id="f-image" placeholder="/assets/products/photo.jpg" /></label>
+                <div class="admin-image-upload">
+                  <input type="file" id="f-image-file" accept="image/png,image/jpeg,image/webp,image/gif" hidden />
+                  <button type="button" class="btn btn--sm" id="admin-image-pick">Выбрать фото с компьютера</button>
+                  <p class="admin-hint admin-image-upload__hint">После выбора файл автоматически загрузится в папку выбранной категории и URL подставится в карточку.</p>
+                </div>
+              </section>
+
+              <section class="admin-form-section">
+                <div class="admin-form-section__head">
+                  <h3>Описание</h3>
+                  <p>Краткий текст для карточки и расширенное описание для страницы товара.</p>
+                </div>
+                <label>Краткое описание <textarea id="f-description" rows="3"></textarea></label>
+                <label>Полное описание <textarea id="f-fullDescription" rows="7"></textarea></label>
+              </section>
+
+              <section class="admin-form-section admin-specs">
+                <h3>Характеристики</h3>
+                <p class="admin-hint">Секция → строки «параметр — значение». Тип «Да/нет» выводит ✓ или ✕. Поле «доп. к ✓» — например версия Bluetooth.</p>
+                <div id="admin-specs-sections"></div>
+                <div class="admin-specs__actions">
+                  <button type="button" class="btn btn--sm" id="admin-add-section">+ Секция</button>
+                  <button type="button" class="btn btn--sm" id="admin-specs-example">Вставить пример</button>
+                </div>
+              </section>
+
+              <div class="admin-form-actions">
+                <button type="submit" class="btn btn--accent">Сохранить товар</button>
+                <button type="button" class="btn btn--sm" id="admin-cancel-edit" disabled>Отменить редактирование</button>
+                <button type="button" class="btn btn--ghost" id="admin-delete" disabled>Удалить товар</button>
+              </div>
+              <p id="admin-status" class="admin-status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/pages/admin-products.js"></script>
+</body>
+</html>

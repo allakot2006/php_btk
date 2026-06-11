@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Пылесосы — Beltelecom Shop</title>
+  <link rel="icon" href="/assets/system/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-active="vacuum.html" data-catalog="vacuum">
+  <div id="shell-header"></div>
+  <main id="main">
+    <section class="product-section page-intro">
+      <h1>Пылесосы</h1>
+      <p class="section-lead">Роботы и классические модели.</p>
+      <div class="filter-bar">
+        <label for="brand-select">Бренд</label>
+        <select id="brand-select">
+          <option value="all">Все бренды</option>
+        </select>
+        <label for="price-select">Цена</label>
+        <select id="price-select">
+          <option value="all">Все цены</option>
+          <option value="0-500">до 500 BYN</option>
+          <option value="500-1000">500–1 000 BYN</option>
+          <option value="1000-2000">1 000–2 000 BYN</option>
+          <option value="2000-plus">дороже 2 000 BYN</option>
+        </select>
+      </div>
+      <div id="products" class="product-grid"></div>
+    </section>
+  </main>
+  <div id="shell-footer"></div>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/cart.js"></script>
+  <script src="js/core/site-shell.js"></script>
+  <script src="js/catalog/catalog-app.js"></script>
+</body>
+</html>
+
+
+
